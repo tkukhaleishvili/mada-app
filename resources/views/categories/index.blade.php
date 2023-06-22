@@ -1,7 +1,6 @@
 @extends('layout.layout')
 
 @section('content')
-    <?php var_dump($categories); ?>
     <div class="card" style="width: 18rem;">
         <img src="https://mdbcdn.b-cdn.net/img/new/standard/nature/184.webp" class="card-img-top" alt="...">
         <div class="card-body">

@@ -24,15 +24,20 @@
 
     </div>
 
+    @if ($errors->any())
+        <div class="alert alert-danger">
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
 
 
-
-    <form action="{{ route('menus.store') }}" method="POST">
+    <form action="{{ route('menus.store') }}" method="POST" enctype="multipart/form-data">>
 
         @csrf
-
-
-
         <div class="row">
 
             <div class="col-xs-12 col-sm-12 col-md-12">
@@ -41,7 +46,7 @@
 
                     <strong>Name:</strong>
 
-                    <input type="text" name="name" class="form-control" placeholder="Name">
+                    <input type="text" name="name" class="form-control" placeholder="Name" value="{{ old('name') }}">
 
                 </div>
 
@@ -52,7 +57,7 @@
 
                     <strong>description:</strong>
 
-                    <input type="text" name="description" class="form-control" placeholder="description">
+                    <input type="text" name="description" class="form-control" placeholder="description" value="{{ old('description') }}">
 
                 </div>
 
@@ -63,10 +68,9 @@
 
                     <strong>price:</strong>
 
-                    <input type="text" name="price" class="form-control" placeholder="price">
+                    <input type="text" name="price" class="form-control" placeholder="price" value="{{ old('price') }}">
 
                 </div>
-                object-fit: cover; /* Ensures the image fills the container without distortion */
 
             </div>
             <div class="col-xs-12 col-sm-12 col-md-12">
@@ -75,18 +79,12 @@
 
                     <strong>image:</strong>
 
-                    <input type="file" name="image" class="form-control" placeholder="image">
-
+                    <input type="file" name="image" class="form-control" placeholder="image" value="{{ old('image') }}">
                 </div>
-
             </div>
-
             <div class="col-xs-12 col-sm-12 col-md-12 text-center">
-
                 <button type="submit" class="btn btn-primary">Submit</button>
-
             </div>
-
         </div>
 
 

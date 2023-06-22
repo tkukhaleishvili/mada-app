@@ -5,7 +5,7 @@ use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\MenuController;
 use App\Http\Controllers\TableController;
 use App\Http\Controllers\ReservationController;
-
+use App\Http\Controllers\indexController;
 
 
 
@@ -20,10 +20,13 @@ use App\Http\Controllers\ReservationController;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+
+Route::prefix('mada')->group(function () {
+    Route::resource('/index',indexController::class);
+    Route::resource('/categories',CategoryController::class);
+    Route::resource('/menus',MenuController::class);
+    Route::resource('/tables',TableController::class);
+    Route::resource('/reservation',ReservationController::class);
+    
 });
-Route::resource('/categories',CategoryController::class);
-Route::resource('/menus',MenuController::class);
-Route::resource('/tables',TableController::class);
-Route::resource('/reservation',ReservationController::class);
+

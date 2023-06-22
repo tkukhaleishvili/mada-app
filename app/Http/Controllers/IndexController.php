@@ -1,11 +1,10 @@
 <?php
 
 namespace App\Http\Controllers;
-use App\Models\Category;
-use App\Models\Menu;
+use App\Models\index;
 use Illuminate\Http\Request;
 
-class MenuController extends Controller
+class IndexController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,11 +13,9 @@ class MenuController extends Controller
      */
     public function index()
     {
-        $menus=Menu::get();
-        //dd($menus);
-        return view('menus.index',compact('menus'));
+        $index=index::get();
+        return view('index.index',compact('index'));
     }
-    
 
     /**
      * Show the form for creating a new resource.
@@ -27,7 +24,7 @@ class MenuController extends Controller
      */
     public function create()
     {
-        return view('menus.create');
+        //
     }
 
     /**
@@ -38,23 +35,7 @@ class MenuController extends Controller
      */
     public function store(Request $request)
     {
-
-        $validated = $request->validate([
-            'name' => 'required|min:5',
-            'description' => 'required',
-            'image' => 'required',
-            'price' => 'required',
-        ]);
-        //dd($validated);
-        $image_path = $this->upload($request);
-        //dd($image_path);
-        
-        $validated['image']= $image_path;
-        //dd($validated);
-        Menu::create($validated);
-        return redirect()->route('menus.index')
-
-            ->with('success','menus created successfully.');
+        //
     }
 
     /**
@@ -97,18 +78,8 @@ class MenuController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function upload($request)
+    public function destroy($id)
     {
-        if ($request->hasFile('image')) {
-            $file = $request->file('image');
-            $fileName = $file->getClientOriginalName();
-            $file->move(public_path('uploads'), $fileName);
-
-            // Perform any additional logic with the uploaded picture here
-
-            return 'uploads/'. $fileName;
-        }
-
-        return "No picture found.";
+        //
     }
 }
